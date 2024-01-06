@@ -98,7 +98,7 @@ bool Board::isValidMove(int origin[2], int destination[2], Color currentcol)
         }
         else
         {
-            return delta[1] == movementDirection &&
+            return abs(delta[0]) == 1 && delta[1] == movementDirection &&
                    gameBoard[destination[0]][destination[1]].getColor() != piece.getColor() &&
                    gameBoard[destination[0]][destination[1]].getColor() != EmptyCol;
         }
