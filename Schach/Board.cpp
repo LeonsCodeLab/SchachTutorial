@@ -1,7 +1,7 @@
 ﻿#include "Board.h"
 Board::Board()
 {
-    
+
     gameBoard[0][1] = Piece(White, Pawn);
     gameBoard[1][1] = Piece(White, Pawn);
     gameBoard[2][1] = Piece(White, Pawn);
@@ -94,12 +94,13 @@ bool Board::isValidMove(int origin[2], int destination[2], Color currentcol)
         {
             return ((origin[1] == pawnFirstMoveY && delta[1] == 2 * movementDirection) ||
                     delta[1] == movementDirection) &&
-                   gameBoard[destination[0]][destination[1]].getColor() == EmptyCol;
+                   gameBoard[destination[0]][destination[1]].getColor() == EmptyCol && isPathClear(origin, destination);
         }
         else
         {
-            return delta[1] == movementDirection && abs(delta[0])==1 &&
-                   (gameBoard[destination[0]][destination[1]].getColor() != piece.getColor());
+            return delta[1] == movementDirection &&
+                   gameBoard[destination[0]][destination[1]].getColor() != piece.getColor() &&
+                   gameBoard[destination[0]][destination[1]].getColor() != EmptyCol;
         }
         break;
 
